@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
 
-    <title>GRest - testing in MSF</title>
+    <title>DLA - datastore</title>
 
-    <meta name="description" content="How we do testing in MSF">
+    <meta name="description" content="DataLoadingAdministration console - datastore implementation">
     <meta name="author" content="Marek Gerhart">
 
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -39,9 +39,7 @@
 <div class="slides">
 
 <section>
-    <h1>GRest</h1>
-
-    <h3>how we do testing in MSF</h3>
+    <h1>DLA datastore implementation</h1>
 
     <p>
         <small><strong>Marek Gerhart</strong> @ GoodData 2013</small>
@@ -51,11 +49,8 @@
 <section>
     <h2>Agenda</h2>
     <ul>
-        <li class="fragment">What is it</li>
-        <li class="fragment">Some history</li>
-        <li class="fragment">How does it work</li>
+        <li class="fragment">Requirements - what we expect from datastore</li>        
         <li class="fragment">Implementation</li>
-        <li class="fragment">Known bugs</li>
     </ul>
     <aside class="notes">
         Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open
@@ -64,223 +59,142 @@
     </aside>
 </section>
 
+<section>
+    <h2>Requirements</h2>
+    <ul>
+        <li class="fragment">Model - single source of truth (no synchronization issues between models)</li>
+        <li class="fragment">Refreshing - refresh models every couple of minutes/seconds</li>                
+        <li class="fragment">Partial saving - multiple forms for different parts of model</li>
+        <li class="fragment">Deleting - don't freak out if resource/model is deleted on the backend</li>
+        <li class="fragment">Proper loading status indication - loading/refreshing/saving/saved (for 15 secs),...</li>
+    </ul>
+</section>
+
 <!-- Example of nested vertical slides -->
 <section>
     <section>
-        <h2>Soooo what is it?</h2>
-
-        <h3>Tell me, tell me!</h3>
+        <h2>Model - single source of truth</h2>
     </section>
-    <section>
-        <h2>GRest is set of integration/functional tests bundled together...</h2>
-        <p>it's not a framework, it doesn't do any magic, it is really just bunch of tests.</p>
-    </section>    
-</section>
-
-<section>
-    <section>
-        <h2>At the beginning there was manual testing and checklisting</h2>
-    </section>
-    <section>
-        <h3>Before each release:</h3>
-        <ul>
-            <li>prepare what to test and how to do it</li>
-            <li>write it down to confluence</li>
-            <li>check confluence for what was tested in previous releases</li>
-            <li>try it day before release</li>
-        </ul>
-    </section>
-    <section>
-        <h3>But we are lazy</h3>
-
-        <p>We keep forgetting about old tests and we are lazy to test "obvious" things that should work.</p>
-         <br>   
-        <p>If it's cumbersome to test some feature manually, it is more likely to be done wrong.</p>
-    </section>
-    <section>
-        <h3>Duh! That should work. Nobody touched this feature for couple of months, I don't need to test this.</h3>
-        <br>
-
-        <h3>Yeah, sure...</h3>
-    </section>
-    <section>
-        <h3>That might be great task for some groovy script</h3>
-
-        <p>I probably wouldn't write some bigger software in groovy, but for scripting and testing it is
-            sledgehammer</p>
-        <ul>
-            <li>great productivity</li>
-            <li>great flexibility</li>
-            <li>no boilerplate code</li>
-        </ul>
-    </section>    
-    <section>
-        <p>
-            So we ended up with 400 lines long <a target="_blank" href="https://github.com/gooddata/msf/blob/d521794c5a8187c48836914b3cd3d311d7ac866a/health_check/health_check.groovy">
-            groovy script.</a>
-        </p>
-
-        <p>Automatization was kind of cool <strong>but</strong>:</p>
-        <ul>
-            <li>hard to maintain</li>
-            <li>hard to refactor</li>
-            <li>tests dependencies howto ?</li>
-            <li>logging howto?</li>
-            <li>if one test fail, it shouldn't affect other tests</li>
-            <li>...</li>
-        </ul>
-    </section>
-    <section>
-        <blockquote>
-            Use the right tool for the right job!
-        </blockquote>
-    </section>
-    <section>
-        <blockquote>
-            Don't reinvent the wheel!
-        </blockquote>
-    </section>    
-</section>
-
-<section>
-    <section>
-        <h2><strong>GRest</strong> was born</h2>
-        <ul>
-            <li>standard java/groovy project in <a target="_blank" href="https://github.com/gooddata/msf/tree/master/test/grest">msf repo</a></li>
-            <li>built on top of gradle (maven + ant + groovy)</li>
-            <li>built on top of TestNG</li>
-            <li>asserts, before/after, tests isolation</li>            
-            <li>configurable standardized logging</li>
-            <li>nice test reports</li>
-            <li>some basic reusable pieces of code</li>
-            <li>composition, inheritance</li>
-        </ul>
-    </section>    
-    <section>
-        <h3>We have tests for</h3>
-        <ul>
-            <li>some resource tests</li>
-            <li>aka process, schedule, metadata storage - create/delete/update</li>
-            <li>some cloud connect graph tests</li>
-            <li>facebook, salesforce, google analytics, exact target, dataset integration, ...</li>
-            <li>end 2 trash tests for testing single cc component</li>
-            <li>end 2 end tests for testing integration - ged data from Salesforce and upload it to GoodData</li>
-            <li>scheduler run graphs</li>
-            <li>...</li>
-        </ul>
-    </section>
-    <section>
-        <h3>There are multiple test groups</h3>
-        <ul>
-            <li><a target="_blank" href="https://ci.intgdc.com/view/MSF/job/MSF%20GRest%20SLA%20check/">SLA</a> - tests triggered every couple of minutes to check that msf services are up and running</li>
-            <li><a target="_blank" href="https://ci.intgdc.com/view/MSF/job/MSF%20GRest%20healthCheck%20tests/">HEALTHCHECK</a> - thorough tests primary for checking msf services after release</li>
-            <li><a target="_blank" href="https://ci.intgdc.com/view/MSF/job/MSF%20REST%20tests/">REST</a> - tests triggered as commit hook (former PERL tests) </li>
-            <li>DOWNLOADERS - workers tests with mocked backend</li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Every test(except Downloaders) can be triggered against any server</h3>
-        
-        <ul>
-            <li>respective jenkins job, check <a target="_blank" href="https://ci.intgdc.com/view/MSF/">MSF view</a> </li>
-            <li>manually from devel machine or PI (check <a target="_blank" href="https://github.com/gooddata/msf/blob/master/test/grest/README.md">README</a> for more info)</li>
-        </ul>
-        
-        <br><br>
-        <pre>Note that tests in DOWNLOADERS group need target machine with custom setup (because of mocking 3rd party backends like facebook, salesforce,...)</pre>
-
-    </section>
-</section>
-
-<section>
-    <section>
-        <h2>Implementation</h2>
-    </section>
-    <section>
-        <h2>Groovy - use the right tool for the job</h2>
-
-        <ul>
-            <li>fast implementation</li>
-            <li>concise - no boilerplate code</li>
-            <li>very productive</li>
-            <li>handy closures</li>
-            <li>string interpolation</li>
-            <li>collections literals</li>
-            <li>operator overloading</li>
-            <li>...</li>
-        </ul>
-    </section>
-    <section>
-        <h2>Gradle</h2>
-        <ul>
-            <li>good project to try out gradle</li>
-            <li>easy customization</li>
-            <li>groovy support</li>
-            <li>concise syntax</li>
-            <li>gradle wrapper</li>
-            <li>incremental build</li>
-            <li>dependencies are bundled together when deploying on PI (to avoid downloading them)</li>
-        </ul>
-    </section>
-    <section>
-        <h2>TestNG</h2>
-        <ul>
-            <li>very similar to JUnit</li>
-            <li><strong>test groups</strong></li>
-            <li><strong>tests dependencies</strong></li>
-            <li>easy parallelism setup</li>
-            <li>data providers</li>
-        </ul>
-    </section>
-    <section>
-        <h2>HttpBuilder</h2>
-        
-        <ul>
-            <li>easy to use but hard to customize</li>
-            <li>TT refreshing hell</li>
-            <li>no IDE help (thanks to dynamic nature and lack of typing)</li>
-        </ul>
-
-<br><br>
-        <p class="left">Will be replaced with RestAssured and basic authentication</p>
-    </section>
-    <section>
-        <h2>jadler</h2>
-        
-        <p>For backend mocking in downloaders test</p>
-    </section>
-</section>
-
-
-<section>
-    <section>
-        <h3>Some restrictions and known bugs</h3>  
-           
-    </section>
-
     <section>        
-    <ul>
-        <li>environment has to be set manually (datasets, eventstores)</li>        
-        <li>issues with HttpBuilder  - ie. TT renewal doesn't work at all (RestAssured will solve this with basic auth)</li>
-        <li>improve logging (verbose, debug)</li>
-        <li>test inheritance versus composition - reusing common code (msf backend?)</li>
-        <li>Simple adding new graph tests (using TestNG data provider)</li>
-    </ul>
+        <h3>Data resources:</h3>
+        <ul>
+            <li>/gdc/projects/{projectId}/dataload/processes/</li>
+            <li>/gdc/projects/{projectId}/schedules</li>        
+            <li>/gdc/projects/{projectId}/schedules/{scheduleId}/executions</li>
+            <li>/gdc/projects/{projectId}/dataload/processes/{processesId}/notificationRules</li>        
+        </ul>
+    </section> 
+    <section>        
+        <h3>Single grouping bootstrap resource</h3>
+        <ul>
+            <li>/gdc/app/account/profile/{profileId}/dataload/processesView</li>
+        </ul>
+<br><br>
+        <p class="left">* serves for listing all processes of all project for user. It also contains some partial
+            information about schedule and last execution.</p>
 
-<br>
-    <pre>For full list check <a target="_blank" href="https://jira.intgdc.com/browse/MSF-3407">jira</a></pre>    
-    </section>
+            <br><br>
+        <p class="left">* it is used to load all necessary data to display home page (list of processes) and main menu.</p>   
+    </section>  
+    <section>        
+        <h3>Keep models in sync</h3>
+        <p>The crucial thing is to keep models in sync - display the same information in process list that are in chedule detail</p>
+    </section> 
 </section>
+
+<section>    
+        <h2>Refreshing</h2>
+        <ul>
+            <li>models should refresh themselves every couple of seconds</li>
+            <li>refresh should be graceful - no flickering, user shouldn't know that something is going on (besides changed values)</li>
+            <li>refresh can't destroy form if user is currently editing model</li>
+            <li>other properties of model (the ones that are not being edited) should be refreshed if possible</li>
+            <li>use proper loading status handling - REFRESH for refreshing (different than LOADING)</li>
+        </ul>    
+</section>  
+<section>
+    
+        <h3>Saving</h3>
+        <ul>
+            <li>model can have multiple forms for editing (different forms for different property groups)</li>
+            <li>handle refresh during editing</li>
+            <li>each form has its own validations</li>
+        </ul>
+</section>    
+
+<section>    
+        <h3>Deleting</h3>
+        <ul>
+            <li>Model can be deleted from application</li>
+            <li>Model can be deleted on backend (during refresh)</li>
+        </ul>
+</section> 
+
+<section>    
+        <h3>Implementation</h3>
+</section> 
+
+
+<section>    
+    <section> 
+        <h3>Datastore</h3>
+        <ul>
+            <li>there is one datastore that handles caching and delegates backend communication + materialization to proper adapter (based on model type)</li>
+            <li>caching is only handled in datastore - adapters know nothing about cache</li>
+            <li>when accessing model, user get it whether it is loaded or not (it can be filled later)</li>
+            <li>returns always the same instance of model no matter what (even in lists)</li>
+            <li>lists items are cached too</li>
+        </ul>
+    </section> 
+
+    <section> 
+        <h3>adapters</h3>
+        <ul>
+            <li>handle backend communication</li>
+            <li>handle materialization - populate model from json response</li>
+            <li>BOOTSTRAP/FULL materialization mode</li>
+            <li>if json payload contains related model(resource), delegate materialiation on datastore (which will delegate it on proper adapter)</li>
+            <li>model has basic onLoaded/onSaved/onError handlers that cen register callback based on load state change</li>
+            <li>handle model array materialization - remove items removed on backend (remove from related lists + mark as Deleted)</li>
+        </ul>
+    </section>   
+</section> 
+
+<section>    
+        <h3>Refreshing</h3>
+        <ul>
+            <li>controller mixin where refreshModel method must be overriden (with specified query etc)</li>
+            <li>activated from router enable/disable when entering/leaving route</li>
+            <li>configurable timeout</li>
+            <li>there are some scenarios when refreshing is not possible - model is loading/saving/refreshing already</li>
+        </ul>
+</section> 
+
+<section>    
+        <h3>Saving</h3>
+        <ul>
+            <li>controller mixin for form controllers</li>
+            <li>route can contain multiple such controllers</li>
+            <li>such controller get whole model as content and creates copy of properties that is handles (edit)</li>
+            <li>actually it creates 2 copies to handle refreshing</li>
+            <li>it also contains actual state (model is being modified/saving/saved)</li>
+        </ul>
+</section> 
+
+<section>    
+        <h3>Deleting</h3>
+        <ul>
+            <li>when model is deleted it is removed from all related lists (go through cached lists) and marked as deleted</li>
+            <li>model stays in cache</li>
+            <li>set DELETED status</li>
+            <li>user can register callback on onDeleted event on model</li>
+        </ul>
+</section> 
 
 
 <section>
     <h3>That's it. Any Q?</h3>
 </section>
-<section>
-    <h3>Senk you.</h3>
-</section>
-
 </div>
 
 </div>
