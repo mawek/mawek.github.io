@@ -608,6 +608,35 @@
 </section>
 
 <section>
+  <section>
+    <h2>Arrays</h2>
+    <ul>
+      <li>array literal</li>
+      <li>untyped</li>
+      <li>dynamic</li>
+      <li>pop/push/shift</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * sparse
+        * typeof returns 'object'
+        * trailing comma is permitted [1,2,3,]
+        * empty values are treated as undefined [1,2,3,,,4,5,]
+        * zero based, 32 bit index
+        * distinguish between indices and properties
+          * index is integer between - and 2^32-1  - update length when such key
+          * if you use negative number, or string, it is converted to string and ttreated as poperty
+          * also if you use string which is number, it works as index (conversion)
+        * array like objects
+          * string
+          * arguments
+      </script>
+    </aside>
+  </section>
+</section>
+
+<section>
 
   <section>
     <h2>Functions</h2>
