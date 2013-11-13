@@ -637,7 +637,6 @@
 </section>
 
 <section>
-
   <section>
     <h2>Functions</h2>
     <ul>
@@ -735,13 +734,125 @@
 
     </code></pre>
 
-
     <aside data-markdown class="notes">
       <script type="text/template">
         * the parenthesis are necessary for the compiler to know that this isn't function declaration statement, but function definition expression
       </script>
     </aside>
   </section>
+</section>
+
+<section>
+  <section>
+    <h2>Prototype inheritance</h2>
+    <p>Object has prototypes. If property is not found in current object, search throught prototype chain for it.</p>
+
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * object created by new Date() inherits data from Date prototype and Object prototype
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Object literal</h2>
+
+    <pre><code>
+
+      var obj = {
+        someNumber:5,
+        someFunction: function(){
+          alert('hello world!');
+        }
+      }
+
+    </code></pre>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * Object.prototype is set as prototype for all objects created by object literal
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Constructor pattern</h2>
+
+    <pre><code>
+
+      // this is set to new object
+      function Rabbit(name, type) {
+        this.name = name;
+
+        // 'private' encapsulated property
+        this.type = function(){
+          return type;
+        }
+
+      }
+
+      // define functions in prototype
+      Rabbit.prototype.jump = function() {
+        this.canWalk = true;
+      }
+
+      Rabbit.LACO = new Rabbit('Laco');
+
+      // don't forget new keyword
+      var rabbit = new Rabbit('John')
+
+    </code></pre>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * only constructor have prototype attribute
+        * object prototype doesn't have prototype
+        * every object has associated prototype (assigned during construction time)
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Object.create()</h2>
+
+    <pre><code>
+
+      var obj = Object.create(SomeClass.prototype, {x:5})
+
+    </code></pre>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * Object.create()
+          * first argument is prototype
+          * second argument is stuff to add
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>is object prototype of another object ? </h2>
+
+    <pre><code>
+
+      // ES5 way
+      object.isPrototypeOf(anotherObj)
+
+      // old way
+      object instanceof someConstructor
+
+    </code></pre>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * Object.create()
+          * first argument is prototype
+          * second argument is stuff to add
+      </script>
+    </aside>
+  </section>
+
 </section>
 
 <section>
