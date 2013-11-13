@@ -535,8 +535,8 @@
   <section>
     <h2>equality</h2>
     <ul>
+      <li>== performs conversion</li>
       <li>=== strict equation (identity operator)</li>
-      <li>== </li>
     </ul>
 
     <aside data-markdown class="notes">
@@ -555,12 +555,31 @@
     <h2>Variables</h2>
 
     <ul>
+      <li>var keyword</li>
       <li>untyped</li>
       <li>lexical scoping</li>
       <li>function scope only</li>
-      <li>** no block scope:( **</li>
+      <li><strong> no block scope:( </strong></li>
+      <li>scope chain</li>
+      <li>hoisting</li>
       <li>perform conversion when necessary (beware - can be tricky)</li>
     </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * multiple vars doesn't matter
+        * you can assign value to undeclared property but then it goes to the global scope
+          * es5 throws error in such case
+        * function scope layering - nested functions
+          * scope chain - variable resolution
+        * variables are visible before they are declared - hoisting
+          * but assignments are not hoisted
+          * that's the reason why vars shold be on top
+          * but it breaks locality of access
+        * if you declare global variable, you are actually defining property of global object
+          * it you do it using var = the property is nonconfigurable, and can't be deleted
+      </script>
+    </aside>
   </section>
 
   <section>
