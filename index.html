@@ -754,6 +754,42 @@
   </section>
 
 
+  <section>
+    <h2>Browser waterfall</h2>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * browser creates document and it starts parsing html page - creating html elements, text nodes ,...
+          * set document.readyState = 'loading'
+        * if browser hit script tag without async/defer:
+          * stop parsing page
+          * download script
+          * wait until it's downloaded
+          * execute script (script can see its script tag and elements before)
+          * continue parsing html page
+        * if browser hit script tag with async/deffer
+          * trigger downloading code but continue parsing and processing html page
+          * async script is executed as soon as possible (when it is downloaded), it is executed synchronously
+        * if document is parsed, fire DOMContentLoaded event on document
+          * that means, browser goes to async phase
+          * some script may be still executing in this phase
+          * defer scripts trigger wight now (trigger them in order they were downloaded)
+        * document is parsed, some scripts and images may be still loading
+        * when everything is loaded and executed, set document.readyState = 'complete'
+        * fire load event on window
+        * async phase
+
+        * there is no specification where should be content visible (browser specific)
+
+        * window.onload
+          * fire when dom is loaded(also pictures are downloaded and everything), it's built-in javascript event
+          * fire when DOM is ready, pictures, ,everything ..
+        * document.ready
+          * jQuery extension, fire before window.onload, when DOM is loaded(but images might not be loaded yet), shold be triggered ASAP
+          * fire when DOM is ready to be manipulated
+      </script>
+    </aside>
+  </section>
 
 </section>
 
