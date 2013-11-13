@@ -605,6 +605,37 @@
     </aside>
   </section>
 
+  <section>
+    <h2>Defining properties</h2>
+    <pre><code>
+      var obj = {
+        a: 'aa'
+      }
+
+      obj.b = 'bbb'
+
+      Object.defineProperty(obj, 'c', {
+        value: 'ccc',
+        enumerable: 'false',
+        configurable: 'false',
+      });
+
+      obj.hasOwnProperty('c') == true;
+
+    </code></pre>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * property descriptor
+          * ES3 - can't be changed
+          * ES5 - can be chaned using Object.defineProperty
+        * writable - whether property can be set
+        * enumerable - whether the property is returned in for/in loop
+        * configurable - whether property can be deleted and attributes altered
+      </script>
+    </aside>
+  </section>
+
 </section>
 
 <section>
