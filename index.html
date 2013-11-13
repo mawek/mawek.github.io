@@ -226,7 +226,7 @@
 
     <aside data-markdown class="notes">
       <script type="text/template">
-        * js je rychly
+        * js is fast
       </script>
     </aside>
   </section>
@@ -245,12 +245,12 @@
 
     <aside data-markdown class="notes">
       <script type="text/template">
-        * tym ze je jazyk jednoduchy - vela ludi sa ho nesnazi pochopit ale zacnu ho pouzivat hned z fleku
-          * potom ho pouzivaju zle a nadavaju ze je to blby jazyk :)
-        * js je celkom rychly ale DOM je pomaly, preto sa to casto hadze nepravom na js
+        * because language is simple, people don't try to understand it but they use it asap
+          * then they use it the wrong way and they are angry with the language
+        * js is fast, DOM is slow (and js is taking the blame many times unfairly)
         * global variables
-          * js nema linker preto hadze vsetko do globalneho namespace-u
-        * vecsina nevyhod sa da nejako obist
+          * js has no linked, everything is grouped in global namespace
+        * most of the bad parts can be avoided
       </script>
     </aside>
   </section>
@@ -538,27 +538,58 @@
 
   <section>
     <h2>wrapper objects for primitives</h2>
+
+    <pre><code>
+      var a = 5;
+      a.toString();
+
+      /* define property on wrapper object
+       * but it will be disposed after this statement
+       */
+      a.someProperty = 'someValue';
+      console.log(a); // undefined
+    </code></pre>
+
+  </section>
+
+  <section>
+    <h2>RegExp (perl syntax)</h2>
+
+    <pre><code>
+      var pattern = /[a-z0-9]+/i; // define case-insensitive regexp
+      pattern.test('hello world'); // true
+
+      'abc123'.match(/[0-9]/g); // ['1', '2', '3']
+
+    </code></pre>
+
     <aside data-markdown class="notes">
       <script type="text/template">
-        * default function return value
-        * var a = 5; 5.toString();
-        * typeof operator show distinction between wrapper ovject and primitive
-        * also === operator
+        * perl regexp /asdf/gi
       </script>
     </aside>
   </section>
 
   <section>
-    <h2>RegExp, Error,...</h2>
-    <aside data-markdown class="notes">
-      <script type="text/template">
-        * perl regexp /asdf/gi
-        * Error for throwin exception
-          * js has try/catch/finally block, use can throw whatever object like 'throw "something"' or 'throw 5' or 'throw new Error("asdf")'
+    <h2>Exceptions</h2>
 
-      </script>
-    </aside>
+    <pre><code>
+      function(){
+        alert('hello world!);
+
+        try{
+          throw new Error('forbidden');
+        }catch(e){
+          if (e instanceof SomeException) { // yeah this is kind of dumb
+            throw 403;
+          }
+        }finally{
+          throw 'FatalError'
+        }
+      }
+    </code></pre>
   </section>
+
 </section>
 
 <section>
