@@ -691,6 +691,16 @@
       <li>pop/push/shift</li>
     </ul>
 
+    <pre><code>
+      var arr = [1,2,,,{a:'b'},];
+      arr.push('hello world');
+      assert arr.length === 6
+      arr.someProperty = 'value'; // define property on array
+
+      var anotherArr = new Array(10); // define sparse array
+
+    </code></pre>
+
     <aside data-markdown class="notes">
       <script type="text/template">
         * sparse
@@ -744,7 +754,7 @@
   </section>
 
   <section>
-    <h2>Functions</h2>
+    <h2>Function definition</h2>
     <ul>
       <li>function definition expression</li>
       <li>function statement (function declaration)</li>
