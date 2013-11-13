@@ -157,10 +157,10 @@
         * otec javascriptu
         * chcel napisat nieco ako Scheme ale ked si v Nescape uvedomili co to vlastne je tak povedali ze ee
         * tak napisal javascript co je taky mix:
-        * java(lebo musel bolo to prave in) (syntax)
-        * scheme - dialekt LISPu (lambda + loose typing)
-        * self - vychadzal zo smalltalku (prototypal inheritance)
-        * perl (regexp)
+          * java(lebo musel bolo to prave in) (syntax)
+          * scheme - dialekt LISPu (lambda + loose typing)
+          * self - vychadzal zo smalltalku (prototypal inheritance)
+          * perl (regexp)
       </script>
     </aside>
   </section>
@@ -182,19 +182,19 @@
         * vyvojarsky nazov pre jazyk bol Mocha
         * po release sa to oficialne volalo LiveScript
         * sun a netscape pochopili ze ms je velmi silny a ze by nebolo odveci spojit sa
-        * sun chcel aby netscape zabilo LiveScript a stavilo na javu, co sa ale nepacilo netscapu
-        * padol navrh na premenovanie LiveScript-u na JavaScript - Sun vlastni trademark a Nestcape bude jediny kto ho
+          * sun chcel aby netscape zabilo LiveScript a stavilo na javu, co sa ale nepacilo netscapu
+          * padol navrh na premenovanie LiveScript-u na JavaScript - Sun vlastni trademark a Nestcape bude jediny kto ho
         moze pouzivat
-        * 1995 - vychadza JavaScript
+          * 1995 - vychadza JavaScript
         * MS zistil ze JavaScript je vlastne celkom fajn, tak ho cely reverse engineering-oval (spolu aj s chybami) a
         dal ho do IE3 ako JScript (kvoli trademark issues)
         * Netscape sa zlakol ze MS si s tym bude robit co chce, tak si povedal ze to treba rychlo standardizovat
-        * Nestacape to najprv skusil u W3c ale ti ich poslali do prdele, tak skusili ISO a dalsi organizacie ale seci
+          * Nestacape to najprv skusil u W3c ale ti ich poslali do prdele, tak skusili ISO a dalsi organizacie ale seci
         ich odmietli
-        * nakoniec pochodili u ECMA (european computer manufacturer association) - ale netscape si dal podmienku ze
+          * nakoniec pochodili u ECMA (european computer manufacturer association) - ale netscape si dal podmienku ze
         standard sa nesmie volat Javascript - iba netscape tomu tak moze hovorit
-        * ECMA prislo s jazykom ECMAScript
-        * v standardizacnej komisii bol aj MS, takze to nebola az taka velka vyhra, MS trval na povodnej verzii
+          * ECMA prislo s jazykom ECMAScript
+          * v standardizacnej komisii bol aj MS, takze to nebola az taka velka vyhra, MS trval na povodnej verzii
         * ES3(1999) je najrozsirenejsia verzia
         * ES4(2009) nikdy nevysla - mala prilis siroky scope tak to zarizli
         * 2011 - vysiel JSON 'standard' (Douglas Crockford to niekde zavesil na net)
@@ -235,24 +235,174 @@
     <h2>The Bad parts</h2>
 
     <ul>
-      <li>The most misunderstood language</li>
       <li>Global variables</li>
-      <li>semicolon insertions</li>
-      <li>no block scope</li>
+      <li>The most misunderstood language</li>
+      <li>Semicolon insertions</li>
+      <li>No block scope</li>
+      <li>No standard library</li>
       <li>with/eval/typeof/null vs undefined</li>
     </ul>
 
     <aside data-markdown class="notes">
       <script type="text/template">
         * tym ze je jazyk jednoduchy - vela ludi sa ho nesnazi pochopit ale zacnu ho pouzivat hned z fleku
-        *  potom ho pouzivaju zle a nadavaju ze je to blby jazyk :)
+          * potom ho pouzivaju zle a nadavaju ze je to blby jazyk :)
         * js je celkom rychly ale DOM je pomaly, preto sa to casto hadze nepravom na js
         * global variables
-        *  js nema linker preto hadze vsetko do globalneho namespace-u
+          * js nema linker preto hadze vsetko do globalneho namespace-u
+        * vecsina nevyhod sa da nejako obist
       </script>
     </aside>
-
   </section>
+
+  <section>
+    <h2>Client-side vs server-side dichotomy</h2>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * server side - node
+        * maven for serverside is npm
+        * fiber, etc
+        * client side - ember/angular
+        * maven for this is bower
+        * web workers
+      </script>
+    </aside>
+  </section>
+
+</section>
+
+<section>
+  <section>
+    <h2>Closer overview</h2>
+  </section>
+
+  <section>
+    <h2>No compilator - only interpreter</h2>
+
+    <p>JS is interpreted. But some browsers do optimize code - i.e. chrome compiles js to native code</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * JIT
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>JSLint</h2>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * for code analysis
+          * global variable access
+          * switch - default
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Garbage collector</h2>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * automatic memory management
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Single threaded execution model</h2>
+
+    <ul>
+      <li>There is only single thread for javascript in browser</li>
+      <li>No waiting, no locking...</li>
+      <li>**no blocking**</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * web workers - for intensive tasks so UI thread is not blocked
+          * can't manipulate DOM
+          * can't share state between themselves
+          * communicate using events (simple strings sending etc)
+        * node.js
+          * fiber - only single fiber is active, not fair
+          * thread-a-go-go - like web workers
+      </script>
+    </aside>
+  </section>
+
+    <section>
+      <h2>No standard library - only pure javascript and environment</h2>
+
+      <aside data-markdown class="notes">
+        <script type="text/template">
+          * spec defines only minimal API for arrays, dates, regexp...
+          * environment provides the rest - Window object in browser provides setTimeout(), alert() functions etc
+            * node.js provides own objects
+        </script>
+      </aside>
+    </section>
+
+  <section>
+    <h2>Language is case-sensitive</h2>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * beware when using with HTML
+        * HTML is case-insensitive, there can be 'onclick' attribute and 'onClick' is valid too
+        * in javascript, the handler name has to be lowercase 'onclick' (also in XHTML)
+        * programs are written using UNICODE
+      </script>
+    </aside>
+  </section>
+
+    <section>
+      <h2>Many reserved words, only couple of them are in use (+ global variables)</h2>
+
+      <aside data-markdown class="notes">
+        <script type="text/template">
+          * reserved
+            * break case catch continue debugger default delete do else false finally for function if in instanceof new nul return switch this throw true try typeof var void while with
+          * reserved not in use
+            * class const enum export extends import super
+          * strict mode keywords
+            * implements interface let package private protected public static yeld
+          * ES3 reserved all java keywords
+            * abstract boolean byte char class const double enum export extends final float godo implements import int interface long native package private protected public short statis cuper synchronized throws transient volatile
+          * global variables
+            * arguments Array Boolean Date decodeURI decodeURIComponent encode URI encode URIComponent Error eval EvalError Function Infinity isFinite isNaN JSOnMath NaN Number Object parseFloat parseInt RangeError ReferenceError RegExp String SyntaxError TypError undefined URIError
+        </script>
+      </aside>
+    </section>
+
+    <section>
+      <h2>Optional semicolon</h2>
+
+      <p>Can be omited between lines and js will insert it itself (don't use this)</p>
+
+      <aside data-markdown class="notes">
+        <script type="text/template">
+          * js will put semicolon at the end of the line if the next nonspace character (on the next line) cannot be interpreted as a continuation of the current statement
+            * var a; \n a \n = \n 5 \n console.log(a) =>  var a; a=5; console.log(a)
+            * var a=b+c \n (d+g).toString() // if no semicolon - js will search for function c(dg)
+          * beware on return/continue/break - they don't check next line
+        </script>
+      </aside>
+    </section>
+
+  <section>
+    <h2>Identifiers and keys</h2>
+
+    <ul>
+      <li>[a-zA-Z_$][a-zA-Z_$0-9]</li>
+      <li>no dash etc</li>
+      <li>the same goes for object properties names</li>
+      <li>if using square bracket notation - everything is permitted</li>
+    </ul>
+  </section>
+
 
 </section>
 
