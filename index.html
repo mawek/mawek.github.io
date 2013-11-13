@@ -394,16 +394,6 @@
       </aside>
     </section>
 
-  <section>
-    <h2>Identifiers and keys</h2>
-
-    <ul>
-      <li>[a-zA-Z_$][a-zA-Z_$0-9]</li>
-      <li>no dash etc</li>
-      <li>the same goes for object properties names</li>
-      <li>if using square bracket notation - everything is permitted</li>
-    </ul>
-  </section>
 </section>
 
 <section>
@@ -561,26 +551,8 @@
 
 <section>
   <section>
-    <h2>Variables, statements</h2>
+    <h2>Variables, scopes</h2>
   </section>
-  <section>
-    <h2>equality</h2>
-    <ul>
-      <li>== performs conversion</li>
-      <li>=== strict equation (identity operator)</li>
-    </ul>
-
-    <aside data-markdown class="notes">
-      <script type="text/template">
-        * === does not perform conversion, so it also compares types
-        * check type
-        * check type, check null/undefined (null/undefined===null/undefined), check if they are primitives (besides NaN), check for reference eq
-        * == conversion (toString, valueOf), comparing primitives
-        * like === but instead of reference comparing, it convert values and compare primitives
-      </script>
-    </aside>
-  </section>
-
 
   <section>
     <h2>Variables</h2>
@@ -623,6 +595,43 @@
       <li>if using square bracket notation - everything is permitted</li>
     </ul>
   </section>
+</section>
+
+<section>
+  <section>
+    <h2>Statements, operators</h2>
+  </section>
+
+
+  <section>
+    <h2>equality</h2>
+    <ul>
+      <li>== performs conversion</li>
+      <li>=== strict equation (identity operator)</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * === does not perform conversion, so it also compares types
+        * check type
+        * check type, check null/undefined (null/undefined===null/undefined), check if they are primitives (besides NaN), check for reference eq
+        * == conversion (toString, valueOf), comparing primitives
+        * like === but instead of reference comparing, it convert values and compare primitives
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>other operators</h2>
+    <p>perform conversions when necessary</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * toString()
+        * valueOf()
+      </script>
+    </aside>
+  </section>
 
   <section>
     <h2>debugger</h2>
@@ -659,10 +668,11 @@
   <section>
     <h2>eval</h2>
 
-    <p>evaluate some string as javascript code (in current context) - don't use it</p>
+    <p>evaluate some string as javascript code - don't use it</p>
 
     <aside data-markdown class="notes">
       <script type="text/template">
+        * evaluates in current context
         * this should be operator, not a function
           * can be assigned to another var, interpreter can't optimize it
         * it can clutters your global space
@@ -687,6 +697,110 @@
   </section>
 </section>
 
+
+<section>
+  <section>
+    <h2>Developer tools</h2>
+  </section>
+
+  <section>
+    <h2>Back in old days</h2>
+    <blockquote>Use the alert Luke!</blockquote>
+  </section>
+
+  <section>
+    <h2>Behold develooper tools</h2>
+    <ul>
+      <li>on windows/linux use F12</li>
+      <li>on mac press these klingon keys: &#8984; &#8997; I </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>elements</h2>
+    <p>DOM manipulation</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * CSS adjustments
+          * see all applicable styles with filenames
+          * enable/disable style
+          * code completition
+          * :hover (desn't work with tooltips)
+        * inspect element
+          * or use magnifier from toolbox
+        * in console inspect($('#nejake_id')) - find element
+        * $0 - selected element
+        * $ - like jquery, if there is jquery, it replaces chrome $
+
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>resources</h2>
+    <p>Cookies/localstorage,...</p>
+    </aside>
+  </section>
+
+  <section>
+    <h2>network</h2>
+    <p>inspect network communication</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * see request, response, methods, headers
+          * 304 - not modified, cache used
+          * use SHIFT + REFRESH to hard refresh
+        * waterfall
+          * color by type
+            * blue - html
+            * orange - js
+            * green - css
+            * purple - images
+          * blue line - firing dom.loaded (browser has parsed html file but some images still can be loading)
+          * red line - firing load event (everything is downloaded)
+          * show latency
+
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>sources</h2>
+    <p>Browse through js/css/html files</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * save after many modifications (right click and save)
+        * history
+        * pretty print {}
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>profiler + timeline</h2>
+    <p>profile css/javascript code</p>
+  </section>
+
+  <section>
+    <h2>console</h2>
+    <p>using for logging, debugging, pause on exception</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * open with escape key
+        * autocompletition
+        * breakpoint
+        * console.log(info)
+        * console.error(some_error)
+        * console.log(someObj) // tree like structure
+      </script>
+    </aside>
+  </section>
+
+</section>
 
 
 
