@@ -128,7 +128,9 @@
 <section>
   <section>
     <h2>Once upon a time...</h2>
-    <img width="178" height="238" src="http://t3.gstatic.com/images?q=tbn:ANd9GcSQChP1joizvOGS2DYInbExdOQ_pkJ8hip6wOEoHM38DBBvDBf64Q" alt="java-script">
+    <img width="178" height="238"
+         src="http://t3.gstatic.com/images?q=tbn:ANd9GcSQChP1joizvOGS2DYInbExdOQ_pkJ8hip6wOEoHM38DBBvDBf64Q"
+         alt="java-script">
   </section>
 
   <section>
@@ -146,17 +148,19 @@
   <section>
     <h2>Brendan Eich - the father</h2>
 
-    <img width="178" height="238" src="http://t0.gstatic.com/images?q=tbn:ANd9GcQ5Vjdjm6p_Cb8PrJ4Gg1S3qGSP2lCmMDgXpXC32lO8p_FIAeus" alt="brendan eich">
+    <img width="178" height="238"
+         src="http://t0.gstatic.com/images?q=tbn:ANd9GcQ5Vjdjm6p_Cb8PrJ4Gg1S3qGSP2lCmMDgXpXC32lO8p_FIAeus"
+         alt="brendan eich">
 
     <aside data-markdown class="notes">
       <script type="text/template">
         * otec javascriptu
         * chcel napisat nieco ako Scheme ale ked si v Nescape uvedomili co to vlastne je tak povedali ze ee
         * tak napisal javascript co je taky mix:
-        ** java(lebo musel bolo to prave in) (syntax)
-        ** scheme - dialekt LISPu (lambda + loose typing)
-        ** self - vychadzal zo smalltalku (prototypal inheritance)
-        ** perl (regexp)
+        * java(lebo musel bolo to prave in) (syntax)
+        * scheme - dialekt LISPu (lambda + loose typing)
+        * self - vychadzal zo smalltalku (prototypal inheritance)
+        * perl (regexp)
       </script>
     </aside>
   </section>
@@ -178,16 +182,19 @@
         * vyvojarsky nazov pre jazyk bol Mocha
         * po release sa to oficialne volalo LiveScript
         * sun a netscape pochopili ze ms je velmi silny a ze by nebolo odveci spojit sa
-        ** sun chcel aby netscape zabilo LiveScript a stavilo na javu, co sa ale nepacilo netscapu
-        ** padol navrh na premenovanie LiveScript-u na JavaScript - Sun vlastni trademark a Nestcape bude jediny kto ho
+        * sun chcel aby netscape zabilo LiveScript a stavilo na javu, co sa ale nepacilo netscapu
+        * padol navrh na premenovanie LiveScript-u na JavaScript - Sun vlastni trademark a Nestcape bude jediny kto ho
         moze pouzivat
         * 1995 - vychadza JavaScript
-        * MS zistil ze JavaScript je vlastne celkom fajn, tak ho cely reverse engineering-oval (spolu aj s chybami) a dal ho do IE3 ako JScript (kvoli trademark issues)
+        * MS zistil ze JavaScript je vlastne celkom fajn, tak ho cely reverse engineering-oval (spolu aj s chybami) a
+        dal ho do IE3 ako JScript (kvoli trademark issues)
         * Netscape sa zlakol ze MS si s tym bude robit co chce, tak si povedal ze to treba rychlo standardizovat
-        ** Nestacape to najprv skusil u W3c ale ti ich poslali do prdele, tak skusili ISO a dalsi organizacie ale seci ich odmietli
-        ** nakoniec pochodili u ECMA (european computer manufacturer association) - ale netscape si dal podmienku ze standard sa nesmie volat Javascript - iba netscape tomu tak moze hovorit
-        ** ECMA prislo s jazykom ECMAScript
-        ** v standardizacnej komisii bol aj MS, takze to nebola az taka velka vyhra, MS trval na povodnej verzii
+        * Nestacape to najprv skusil u W3c ale ti ich poslali do prdele, tak skusili ISO a dalsi organizacie ale seci
+        ich odmietli
+        * nakoniec pochodili u ECMA (european computer manufacturer association) - ale netscape si dal podmienku ze
+        standard sa nesmie volat Javascript - iba netscape tomu tak moze hovorit
+        * ECMA prislo s jazykom ECMAScript
+        * v standardizacnej komisii bol aj MS, takze to nebola az taka velka vyhra, MS trval na povodnej verzii
         * ES3(1999) je najrozsirenejsia verzia
         * ES4(2009) nikdy nevysla - mala prilis siroky scope tak to zarizli
         * 2011 - vysiel JSON 'standard' (Douglas Crockford to niekde zavesil na net)
@@ -198,134 +205,58 @@
 </section>
 
 <section>
-  <h2>Slides</h2>
+  <section>
+    <h2>Overview</h2>
 
-  <p>
-    Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a
-      href="http://slid.es" target="_blank">http://slid.es</a>.
-  </p>
+    <p>High-level, dynamic, untyped, interpreted programming language suitable for object-oriented and functional programming
+      styles</p>
+  </section>
+
+  <section>
+    <h2>The Good parts</h2>
+
+    <ul>
+      <li>Lambdas</li>
+      <li>Dynamic objects</li>
+      <li>Loose typing</li>
+      <li>Prototypal inheritance</li>
+      <li>Single threaded execution model</li>
+      <li>Object literal (JSON)</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * js je rychly
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>The Bad parts</h2>
+
+    <ul>
+      <li>The most misunderstood language</li>
+      <li>Global variables</li>
+      <li>semicolon insertions</li>
+      <li>no block scope</li>
+      <li>with/eval/typeof/null vs undefined</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * tym ze je jazyk jednoduchy - vela ludi sa ho nesnazi pochopit ale zacnu ho pouzivat hned z fleku
+        *  potom ho pouzivaju zle a nadavaju ze je to blby jazyk :)
+        * js je celkom rychly ale DOM je pomaly, preto sa to casto hadze nepravom na js
+        * global variables
+        *  js nema linker preto hadze vsetko do globalneho namespace-u
+      </script>
+    </aside>
+
+  </section>
+
 </section>
 
-<section>
-  <h2>Point of View</h2>
 
-  <p>
-    Press <strong>ESC</strong> to enter the slide overview.
-  </p>
-
-  <p>
-    Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt
-    + click anywhere to zoom back out.
-  </p>
-</section>
-
-<section>
-  <h2>Works in Mobile Safari</h2>
-
-  <p>
-    Try it out! You can swipe through the slides and pinch your way to the overview.
-  </p>
-</section>
-
-<section>
-  <h2>Marvelous Unordered List</h2>
-  <ul>
-    <li>No order here</li>
-    <li>Or here</li>
-    <li>Or here</li>
-    <li>Or here</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Fantastic Ordered List</h2>
-  <ol>
-    <li>One is smaller than...</li>
-    <li>Two is smaller than...</li>
-    <li>Three!</li>
-  </ol>
-</section>
-
-<section data-markdown>
-  <script type="text/template">
-    ## Markdown support
-
-    For those of you who like that sort of thing. Instructions and a bit more info available
-    [here](https://github.com/hakimel/reveal.js#markdown).
-
-    ```
-    <section data-markdown>
-      ## Markdown support
-
-      For those of you who like that sort of thing.
-      Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-    </section>
-    ```
-  </script>
-</section>
-
-<section id="transitions">
-  <h2>Transition Styles</h2>
-
-  <p>
-    You can select from different transitions, like: <br>
-    <a href="?transition=cube#/transitions">Cube</a> -
-    <a href="?transition=page#/transitions">Page</a> -
-    <a href="?transition=concave#/transitions">Concave</a> -
-    <a href="?transition=zoom#/transitions">Zoom</a> -
-    <a href="?transition=linear#/transitions">Linear</a> -
-    <a href="?transition=fade#/transitions">Fade</a> -
-    <a href="?transition=none#/transitions">None</a> -
-    <a href="?#/transitions">Default</a>
-  </p>
-</section>
-
-<section id="themes">
-  <h2>Themes</h2>
-
-  <p>
-    Reveal.js comes with a few themes built in: <br>
-    <a href="?#/themes">Default</a> -
-    <a href="?theme=sky#/themes">Sky</a> -
-    <a href="?theme=beige#/themes">Beige</a> -
-    <a href="?theme=simple#/themes">Simple</a> -
-    <a href="?theme=serif#/themes">Serif</a> -
-    <a href="?theme=night#/themes">Night</a> <br>
-    <a href="?theme=moon.css#/themes">Moon</a> -
-    <a href="?theme=simple.css#/themes">Simple</a> -
-    <a href="?theme=solarized.css#/themes">Solarized</a>
-  </p>
-
-  <p>
-    <small>
-      * Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme
-      in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-    </small>
-  </p>
-</section>
-
-<section>
-  <h2>Global State</h2>
-
-  <p>
-    Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-    will be added as a class to the document element when the slide is open. This lets you
-    apply broader style changes, like switching the background.
-  </p>
-</section>
-
-<section data-state="customevent">
-  <h2>Custom Events</h2>
-
-  <p>
-    Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-  </p>
-          <pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-            Reveal.addEventListener( 'customevent', function() {
-            console.log( '"customevent" has fired' );
-            } );
-          </code></pre>
-</section>
 
 <section>
   <section data-background="#007777">
