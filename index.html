@@ -317,7 +317,7 @@
     <ul>
       <li>There is only single thread for javascript in browser</li>
       <li>No waiting, no locking...</li>
-      <li>**no blocking**</li>
+      <li><strong>no blocking</strong></li>
     </ul>
 
     <aside data-markdown class="notes">
@@ -329,6 +329,8 @@
         * node.js
           * fiber - only single fiber is active, not fair
           * thread-a-go-go - like web workers
+        * one would think that this would make js slow but it's not true
+          * thanks to non-blocking nature js is really fast + webworkers/fiber
       </script>
     </aside>
   </section>
@@ -380,7 +382,7 @@
     <section>
       <h2>Optional semicolon</h2>
 
-      <p>Can be omited between lines and js will insert it itself (don't use this)</p>
+      <p><strike>Can be omited between lines and js will insert it itself</strike></p>
 
       <aside data-markdown class="notes">
         <script type="text/template">
