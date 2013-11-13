@@ -770,10 +770,11 @@
         * if browser hit script tag with async/deffer
           * trigger downloading code but continue parsing and processing html page
           * async script is executed as soon as possible (when it is downloaded), it is executed synchronously
+        * when document is parsed, set document.readyState='interactive'
+          * defer scripts trigger wight now (trigger them in order they were downloaded)
         * if document is parsed, fire DOMContentLoaded event on document
           * that means, browser goes to async phase
           * some script may be still executing in this phase
-          * defer scripts trigger wight now (trigger them in order they were downloaded)
         * document is parsed, some scripts and images may be still loading
         * when everything is loaded and executed, set document.readyState = 'complete'
         * fire load event on window
