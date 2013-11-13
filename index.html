@@ -381,8 +381,20 @@
 
     <section>
       <h2>Optional semicolon</h2>
-
       <p><strike>can be omited between lines and js will insert it itself</strike></p>
+
+      <pre><code>
+          var a;
+          a
+          =
+          5
+          console.log(a) // the same as var a; a=5; console.log(a)
+
+          var a=b+c
+          (d+g).toString() // js will search for function c(dg)
+
+      </code></pre>
+
 
       <aside data-markdown class="notes">
         <script type="text/template">
@@ -479,7 +491,7 @@
 
     <p>Let's do it java style - zero based months, 1 based days.</p>
 
-    <img width="178" height="238" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
+    <img width="300" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
   </section>
 
 
@@ -487,7 +499,7 @@
     <h2>null</h2>
 
     <p>It's not an object, but `typeof null` returns always 'object' </p>
-    <img width="178" height="238" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
+    <img width="300" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
   </section>
 
 
@@ -572,9 +584,9 @@
   <section>
     <h2>Multiple ways of defining objects</h2>
     <ul>
-      <li>object literal</li>
+      <li>object literal {propName: 'propValue'}</li>
       <li>constructor function</li>
-      <li>Object.create()</li>
+      <li>Object.create(prototype, {propName: 'propValue})</li>
       <li>Ember.Object.create() and other ways</li>
     </ul>
   </section>
@@ -1028,6 +1040,10 @@
 
     <p>evaluate some string as javascript code - don't use it</p>
 
+    <pre><code>
+      eval('assert("hello world!");
+    </code></pre>
+
     <aside data-markdown class="notes">
       <script type="text/template">
         * evaluates in current context
@@ -1042,6 +1058,18 @@
     <h2>with</h2>
 
     <p>temporarily extend scope chain - don't use it</p>
+
+    <pre><code>
+      var a = 'aa',
+          obj = {x = 'xx'};
+
+      with(obj){
+        assert x === 'xx'; // search on object
+        assert a === 'aa'; // search from 'outer' scope
+        c = 'cc'; // yikes! global scope
+      }
+
+    </code></pre>
 
     <aside data-markdown class="notes">
       <script type="text/template">
