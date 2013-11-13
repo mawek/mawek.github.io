@@ -551,6 +551,64 @@
 
 <section>
   <section>
+    <h2>Objects</h2>
+    <ul>
+      <li>composite value</li>
+      <li>hash/dictionary/associative array</li>
+      <li>prototypal inheritance</li>
+      <li>dynamic</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * aggregates multiple values
+        * (unordered)collection of properties - each has name and value
+        * it can inherit some properties from another object (its prototype) - hence prototypal inheritance
+        * dynamic - properties can be added/deleted at runtime
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Multiple ways of defining objects</h2>
+    <ul>
+      <li>object literal</li>
+      <li>constructor function</li>
+      <li>Object.create()</li>
+      <li>Ember.Object.create() and other ways</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Object properties</h2>
+    <ul>
+      <li>dot/square bracket notation</li>
+      <li>property attributes (value, writable, enumerable, configurable)</li>
+      <li>accessor properties (getter/setters)</li>
+      <li>deleting property</li>
+      <li>for in loop</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * notation
+          * dot - can't use reserved words, no dash, spaces
+          * bracket - anythink, even expression, even empty string
+        * property attributes can be modified in ES3
+          * ES5 allows modification, among other cool stuff - freezing object
+        * delete property
+          * like setting to undefined, but the property removes from enumeration
+        * for in loop
+          * iterate over object (enumerable) properties, and its prototype properties
+          * user can filter what he caser about
+      </script>
+    </aside>
+  </section>
+
+</section>
+
+<section>
+  <section>
     <h2>Variables, scopes</h2>
   </section>
 
@@ -602,6 +660,27 @@
     <h2>Statements, operators</h2>
   </section>
 
+
+  <section>
+    <h2>instanceof, typeof</h2>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * instanceof
+          * prototype chain
+          * left operand is object, right is function
+        * typeof
+          * not really useful
+          * undefined: 'undefined'
+          * null: 'object'
+          * true/false: 'boolean'
+          * number/NaN: 'number'
+          * text: 'string'
+          * functoin: 'function'
+          * object/array: 'object'
+      </script>
+    </aside>
+  </section>
 
   <section>
     <h2>equality</h2>
