@@ -613,14 +613,64 @@
   </section>
 
   <section>
-    <h2>Multiple ways of defining objects</h2>
-    <ul>
-      <li>object literal {propName: 'propValue'}</li>
-      <li>constructor function</li>
-      <li>Object.create(prototype, {propName: 'propValue})</li>
-      <li>Ember.Object.create() and other ways</li>
-    </ul>
+    <h2>Define object using literal</h2>
+
+    <pre><code>
+      var obj = {
+        name: 'Jozko',
+        surname: 'Mrkvicka',
+
+        wholeName: function(){
+          return this.name + ' ' + this.surname;
+        }
+      }
+    </code></pre>
   </section>
+
+  <section>
+    <h2>Define object using constructor function</h2>
+
+    <pre><code>
+      function Person(name, surname){
+        this.name =  name;
+        this.surname = surname;
+
+        this.wholeName = function(){
+          return this.name + ' ' + this.surname;
+        }
+      }
+
+      // don't forget new keyword!
+      var jozko = new Person('Jozko', 'Mrkvicka');
+
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>Define object using Object.create(prototype, someValues)</h2>
+
+    <pre><code>
+      var obj = Object.create(Object.prototype, {prop:'value'})
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>Define object using custom library like Ember.js</h2>
+
+    <pre><code>
+      var Person = Ember.Object.extend({
+        name: null,
+        surname: null,
+
+        wholeName: function(){
+          return this.get('name') + ' ' + this.get('surname');
+        }.property('name, 'surname');
+      });
+
+      var jozko = Person.create({name: 'Jozko', surname: 'Mrkvicka'});
+    </code></pre>
+  </section>
+
 
   <section>
     <h2>Object properties</h2>
