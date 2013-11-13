@@ -695,10 +695,23 @@
     <h2>Function as namespace</h2>
       <pre><code>
       (function(){
-        // do something
+        var obj={},
+            privateVariable = 1;
+
+        obj.publicFunction = function(){
+          return privateVariable;
+        }
+        return obj;
       }());
 
     </code></pre>
+
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * the parenthesis are necessary for the compiler to know that this isn't function declaration statement, but function definition expression
+      </script>
+    </aside>
   </section>
 </section>
 
