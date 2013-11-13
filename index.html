@@ -404,8 +404,175 @@
       <li>if using square bracket notation - everything is permitted</li>
     </ul>
   </section>
+</section>
+
+<section>
+
+  <section>
+    <h2>Types</h2>
+  </section>
+
+  <section>
+    <h2>Primitive types</h2>
+
+    <ul>
+      <li>number</li>
+      <li>string</li>
+      <li>boolean</li>
+      <li>null</li>
+      <li>undefined (kind of)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Object types</h2>
+    <p>everything that is not a primitive type is an object</p>
+  </section>
+
+  <section>
+    <h2>Boolean</h2>
+
+    <ul>
+      <li>no surprise - immutable, ordered sequence of characters</li>
+      <li>in ES3 string literals must be oneliner, ES5 permits line breaks</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * 16-bit values - each represent Unicode character
+        * length is number of 16-bit values it contain
+        * pi.length == 1
+        * e.length == 2
+        * if escape character precedes any other character, it is ignored
+        * beware when using "' in html - choose one and use it
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Number</h2>
+
+    <ul>
+      <li>all numbers are 64-bit floating point IEEE-754 (java double)</li>
+      <li>no integer/double distinction</li>
+      <li>arithmetics don't raise error in case of overlow/underflow/division by zero</li>
+      <li>edge cases - Infinity/NaN</li>
+      <li>NaN != NaN (the only case where x!=x)</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * array indexint is performed with 32-bit integers
+        * don't write number literal with leading zero, some implementations consider it as octal value
+        * ES5 forbid octal literals explicitly
+        * arithmetics don't raise error in case of overlow/underflow/division by zero
+        * it produces NaN/Infinity/-Infinity
+        * underflow occurs if value is close to zero = 0 is produced (or -0)
+        * division by zero produces NaN
+        * x != x // will be true if and only if x is NaN
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>String</h2>
+
+    <ul>
+      <li>true/false</li>
+      <li>falsy values: undefined, null, 0, -0, NaN, ''</li>
+      <li>truthy values: everything else (even empty array)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Date</h2>
+
+    <p>Let's do it java style - zero based months, 1 based days.</p>
+
+    <img width="178" height="238" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
+  </section>
 
 
+  <section>
+    <h2>null</h2>
+
+    <p>It's not an object, but `typeof null` returns always 'object' </p>
+    <img width="178" height="238" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
+  </section>
+
+
+  <section>
+    <h2>undefined</h2>
+
+    <ul>
+      <li>absence of property</li>
+      <li>unitialized value</li>
+      <li>it's global value, it can be set to whatever (in ES3)</li>
+    </ul>
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * default function return value
+        * array return value (for non existing)
+        * its gobal value, it can be set to whatever (in ES3)
+          * in ES5 undefined is read-only value
+          * typeof undefined // returns 'undefined'
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>wrapper objects for primitives</h2>
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * default function return value
+        * var a = 5; 5.toString();
+        * typeof operator show distinction between wrapper ovject and primitive
+        * also === operator
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>equality</h2>
+    <ul>
+      <li>=== strict equation (identity operator)</li>
+      <li>== </li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * === does not perform conversion, so it also compares types
+        * check type
+        * check type, check null/undefined (null/undefined===null/undefined), check if they are primitives (besides NaN), check for reference eq
+        * == conversion (toString, valueOf), comparing primitives
+        * like === but instead of reference comparing, it convert values and compare primitives
+      </script>
+    </aside>
+  </section>
+
+
+  <section>
+    <h2>Variables</h2>
+
+    <ul>
+      <li>untyped</li>
+      <li>lexical scoping</li>
+      <li>function scope only</li>
+      <li>** no block scope:( **</li>
+      <li>perform conversion when necessary (beware - can be tricky)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Identifiers and keys</h2>
+
+    <ul>
+      <li>[a-zA-Z_$][a-zA-Z_$0-9]</li>
+      <li>no dash etc</li>
+      <li>the same goes for object properties names</li>
+      <li>if using square bracket notation - everything is permitted</li>
+    </ul>
+  </section>
 </section>
 
 
