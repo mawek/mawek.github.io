@@ -697,6 +697,66 @@
   </section>
 </section>
 
+<section>
+  <section>
+    <h2>Execution javascript in browser</h2>
+  </section>
+
+  <section>
+    <h2>Window - the environment</h2>
+    <p>Window serves as global object which provides API and some useful objects(document,location...) and methods (alert, setTimeout,...)</p>
+  </section>
+
+  <section>
+    <h2>Js is running in two modes</h2>
+    <ul>
+      <li>synchronous(loading) mode</li>
+      <li>asynchronous (event-handling) mode</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * in history, there was no API for traversing DOM
+        * the only way JS could manipulate DOM was generating it using document.write()
+        * so browser hits script tag, it pauses rendering and execution, downloads and executes script
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Embeding javascript code in HTML</h2>
+    <ul>
+      <li>inline between pair of script tags</li>
+      <li>external file</li>
+      <li>directly in HTMl as some event handler</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * script tag
+          * close tag is required
+          * default value for type is text/javascript so it't not necessary to set it
+          * language attribute is deprecated (language='javascript')
+        * defer/async atribut
+          * can't use document.write
+          * defer - trigger downloading script but execute it after dom is loaded/parsed,.. execute scripts in order they trigger download
+          * async - trigger downloading script and execute it as soon as possible
+        * all javascripts share the same namespace and same global object
+        * inline
+          * the code should be in CData section - if code contains <& marks (these characters are interpreted as XML markup)
+        * external file
+          * behaves exactly as inlined script
+          * if you use src attribute, content between tags is ignored
+          * caching - using CDN
+            * same origin policy doesn't apply here - js code can interact with code no matter where it was loaded from
+      </script>
+    </aside>
+  </section>
+
+
+
+</section>
+
 
 <section>
   <section>
