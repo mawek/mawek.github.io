@@ -608,6 +608,101 @@
 </section>
 
 <section>
+
+  <section>
+    <h2>Functions</h2>
+    <ul>
+      <li>first class citizens</li>
+      <li>function are values</li>
+      <li>hoisting</li>
+      <li>invocation context</li>
+      <li>lexical scoping (closures)</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * values - they can be passed around etc
+        * arguments
+          * if fewer - undefined
+          * if more - access through argument
+          * length attribute - arity of function
+        * names are useful for stacktraces
+        * variable declaration get hoisted, but their assignment don't
+        * also function declaration get hoisted (the whole with body not just the name)
+        * this
+          * not a variable
+          * not assignable
+          * not keyword
+          * doesn't have scope
+        * closures
+          * lexical scoping - so the functions must include also reference to the current scope chain (when defining)
+          * this combination of function object and scope(variable bindings) in which function variables are resolved is called a closure
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Functions</h2>
+    <ul>
+      <li>function definition expression</li>
+      <li>function statement (function declaration)</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * function definition expression can include name for the function
+          * define function as part of larger expression
+          * var a = function sth(){} // named function
+          * (function(){alert('asdf');})(); // self invoking function expression
+        * function declaration
+          * function sth(){}
+          * without var
+          * only top level, no in if/loop
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Function invocation patterns</h2>
+    <p>They differ in invocation context (this)</p>
+    <ul>
+      <li>function</li>
+      <li>method</li>
+      <li>constructor</li>
+      <li>indirect (call/apply)</li>
+    </ul>
+
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * function
+          * global this
+          * ES 5 put undefined in this
+        * method
+          * this is the object
+          * property of object
+        * constructor
+          * newly created this
+        * indirect
+          * call - expects own argument list
+          * apply - expects array
+        * bind(this)
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Function as namespace</h2>
+      <pre><code>
+      (function(){
+        // do something
+      }());
+
+    </code></pre>
+  </section>
+</section>
+
+<section>
   <section>
     <h2>Variables, scopes</h2>
   </section>
