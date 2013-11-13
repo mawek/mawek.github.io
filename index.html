@@ -647,7 +647,7 @@
   </section>
 
   <section>
-    <h2>Define object using Object.create(prototype, someValues)</h2>
+    <h2>Define object using Object.create()</h2>
 
     <pre><code>
       var obj = Object.create(Object.prototype, {prop:'value'})
@@ -664,7 +664,7 @@
 
         wholeName: function(){
           return this.get('name') + ' ' + this.get('surname');
-        }.property('name, 'surname');
+        }.property('name', 'surname');
       });
 
       var jozko = Person.create({name: 'Jozko', surname: 'Mrkvicka'});
@@ -890,27 +890,6 @@
   </section>
 
   <section>
-    <h2>Object literal</h2>
-
-    <pre><code>
-
-      var obj = {
-        someNumber:5,
-        someFunction: function(){
-          alert('hello world!');
-        }
-      }
-
-    </code></pre>
-
-    <aside data-markdown class="notes">
-      <script type="text/template">
-        * Object.prototype is set as prototype for all objects created by object literal
-      </script>
-    </aside>
-  </section>
-
-  <section>
     <h2>Constructor pattern</h2>
 
     <pre><code>
@@ -970,21 +949,13 @@
 
     <pre><code>
 
-      // ES5 way
+      // the ES5 way
       object.isPrototypeOf(anotherObj)
 
-      // old way
-      object instanceof someConstructor
+      // the old way
+      object instanceof SomeConstructor
 
     </code></pre>
-
-    <aside data-markdown class="notes">
-      <script type="text/template">
-        * Object.create()
-          * first argument is prototype
-          * second argument is stuff to add
-      </script>
-    </aside>
   </section>
 
 </section>
@@ -1001,12 +972,76 @@
       <li>var keyword</li>
       <li>untyped</li>
       <li>lexical scoping</li>
+      <li>perform conversion when necessary (beware - can be tricky)</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * multiple vars doesn't matter
+        * you can assign value to undeclared property but then it goes to the global scope
+        * es5 throws error in such case
+        * if you declare global variable, you are actually defining property of global object
+        * it you do it using var = the property is nonconfigurable, and can't be deleted
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Variables</h2>
+
+    <ul>
       <li>function scope only</li>
       <li><strong> no block scope:( </strong></li>
       <li>scope chain</li>
       <li>hoisting</li>
-      <li>perform conversion when necessary (beware - can be tricky)</li>
     </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * multiple vars doesn't matter
+        * you can assign value to undeclared property but then it goes to the global scope
+        * es5 throws error in such case
+        * function scope layering - nested functions
+        * scope chain - variable resolution
+        * variables are visible before they are declared - hoisting
+        * but assignments are not hoisted
+        * that's the reason why vars shold be on top
+        * but it breaks locality of access
+        * if you declare global variable, you are actually defining property of global object
+        * it you do it using var = the property is nonconfigurable, and can't be deleted
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Variables</h2>
+
+
+    TODO example should work
+    <pre><code>
+      var someFunction = function(){
+        var a = 5;
+        {
+          var b = 10; // no block scope - b is hoisted to the top
+        }
+
+        alert(helloWorld()); // this works fine
+
+        // this would fail
+        // alert(helloWorldVariable());
+
+        // helloWorld function get hoisted to the top, so it can be called from everywhere
+        // helloWorldVariable get hoisted but it assignment don't
+        var helloWorldVariable = function helloWorld(){
+          return 'hello world';
+        }
+
+        // closure
+        return function(){
+          return a++;
+        }
+      }
+    </code></pre>
 
     <aside data-markdown class="notes">
       <script type="text/template">
