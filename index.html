@@ -261,11 +261,11 @@
     <aside data-markdown class="notes">
       <script type="text/template">
         * server side - node
-        * maven for serverside is npm
-        * fiber, etc
+          * maven for serverside is npm
+          * fiber, etc
         * client side - ember/angular
-        * maven for this is bower
-        * web workers
+          * maven for this is bower
+          * web workers
       </script>
     </aside>
   </section>
@@ -382,7 +382,7 @@
     <section>
       <h2>Optional semicolon</h2>
 
-      <p><strike>Can be omited between lines and js will insert it itself</strike></p>
+      <p><strike>can be omited between lines and js will insert it itself</strike></p>
 
       <aside data-markdown class="notes">
         <script type="text/template">
@@ -433,20 +433,10 @@
     <h2>Boolean</h2>
 
     <ul>
-      <li>no surprise - immutable, ordered sequence of characters</li>
-      <li>in ES3 string literals must be oneliner, ES5 permits line breaks</li>
+      <li>true/false</li>
+      <li>falsy values: undefined, null, 0, -0, NaN, ''</li>
+      <li>truthy values: everything else (even empty array)</li>
     </ul>
-
-    <aside data-markdown class="notes">
-      <script type="text/template">
-        * 16-bit values - each represent Unicode character
-        * length is number of 16-bit values it contain
-        * pi.length == 1
-        * e.length == 2
-        * if escape character precedes any other character, it is ignored
-        * beware when using "' in html - choose one and use it
-      </script>
-    </aside>
   </section>
 
   <section>
@@ -478,10 +468,20 @@
     <h2>String</h2>
 
     <ul>
-      <li>true/false</li>
-      <li>falsy values: undefined, null, 0, -0, NaN, ''</li>
-      <li>truthy values: everything else (even empty array)</li>
+      <li>no surprise - immutable, ordered sequence of characters</li>
+      <li>in ES3 string literals must be oneliner, ES5 permits line breaks</li>
     </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * 16-bit values - each represent Unicode character
+        * length is number of 16-bit values it contain
+        * pi.length == 1
+        * e.length == 2
+        * if escape character precedes any other character, it is ignored
+        * beware when using "' in html - choose one and use it
+      </script>
+    </aside>
   </section>
 
   <section>
@@ -521,6 +521,20 @@
   </section>
 
   <section>
+    <h2>functions</h2>
+    <ul>
+      <li>object with executable code</li>
+      <li>function are objects</li>
+      <li>function are true values</li>
+    </ul>
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * function are values - they can be passed around,...
+      </script>
+    </aside>
+  </section>
+
+  <section>
     <h2>wrapper objects for primitives</h2>
     <aside data-markdown class="notes">
       <script type="text/template">
@@ -532,6 +546,23 @@
     </aside>
   </section>
 
+  <section>
+    <h2>RegExp, Error,...</h2>
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * perl regexp /asdf/gi
+        * Error for throwin exception
+          * js has try/catch/finally block, use can throw whatever object like 'throw "something"' or 'throw 5' or 'throw new Error("asdf")'
+
+      </script>
+    </aside>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h2>Variables, statements</h2>
+  </section>
   <section>
     <h2>equality</h2>
     <ul>
@@ -569,15 +600,15 @@
       <script type="text/template">
         * multiple vars doesn't matter
         * you can assign value to undeclared property but then it goes to the global scope
-          * es5 throws error in such case
+        * es5 throws error in such case
         * function scope layering - nested functions
-          * scope chain - variable resolution
+        * scope chain - variable resolution
         * variables are visible before they are declared - hoisting
-          * but assignments are not hoisted
-          * that's the reason why vars shold be on top
-          * but it breaks locality of access
+        * but assignments are not hoisted
+        * that's the reason why vars shold be on top
+        * but it breaks locality of access
         * if you declare global variable, you are actually defining property of global object
-          * it you do it using var = the property is nonconfigurable, and can't be deleted
+        * it you do it using var = the property is nonconfigurable, and can't be deleted
       </script>
     </aside>
   </section>
@@ -591,6 +622,68 @@
       <li>the same goes for object properties names</li>
       <li>if using square bracket notation - everything is permitted</li>
     </ul>
+  </section>
+
+  <section>
+    <h2>debugger</h2>
+
+    <p>serves as breakpoint if debugger is running</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * formally is part of ES5 but most browser supports it
+        * doesn't start debugger itself
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>"use strict"</h2>
+
+    <p>ES5 directive for strict code - indicates that strict code follows</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * defined at the begining of the function or at the start of the script
+        * something like annotation
+        * restrictions
+          * with statement is forbidden
+          * function this is not scoped to the global object
+          * no two properties with same name in object literal
+          * no octal number literals
+          * eval/arguments as keywords
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>eval</h2>
+
+    <p>evaluate some string as javascript code (in current context) - don't use it</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * this should be operator, not a function
+          * can be assigned to another var, interpreter can't optimize it
+        * it can clutters your global space
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>with</h2>
+
+    <p>temporarily extend scope chain - don't use it</p>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * serves as shortcut, can be replaced with simple var
+        * hard to optimize
+        * only for reading/changing properties
+        * new property can't be defined this way
+        * no clear way of telling whether property was accessed on object or from outter space
+      </script>
+    </aside>
   </section>
 </section>
 
