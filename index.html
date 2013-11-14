@@ -651,16 +651,16 @@
     <ul>
       <li>composite value</li>
       <li>hash/dictionary/associative array</li>
-      <li>prototypal inheritance</li>
       <li>dynamic</li>
+      <li>prototypal inheritance</li>
     </ul>
 
     <aside data-markdown class="notes">
       <script type="text/template">
         * aggregates multiple values
         * (unordered)collection of properties - each has name and value
-        * it can inherit some properties from another object (its prototype) - hence prototypal inheritance
         * dynamic - properties can be added/deleted at runtime
+        * it can inherit some properties from another object (its prototype) - hence prototypal inheritance
       </script>
     </aside>
   </section>
@@ -703,8 +703,14 @@
     <h2>Define object using Object.create()</h2>
 
     <pre><code>
-      var obj = Object.create(Object.prototype, {prop:'value'})
+      var obj = Object.create(Object.prototype, {prop: {value: 'asdf'}})
     </code></pre>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * property descriptor
+      </script>
+    </aside>
   </section>
 
   <section>
@@ -797,7 +803,7 @@
     <pre><code>
       var arr = [1,2,,,{a:'b'},];
       arr.push('hello world');
-      assert arr.length === 6
+      arr.length === 6 // true
       arr.someProperty = 'value'; // define property on array
 
       var anotherArr = new Array(10); // define sparse array
@@ -852,6 +858,7 @@
         * closures
           * lexical scoping - so the functions must include also reference to the current scope chain (when defining)
           * this combination of function object and scope(variable bindings) in which function variables are resolved is called a closure
+        * toString
       </script>
     </aside>
   </section>
@@ -1220,7 +1227,7 @@
     <p>evaluate some string as javascript code - don't use it</p>
 
     <pre><code>
-      eval('assert("hello world!");
+      eval('alert("hello world!");
     </code></pre>
 
     <aside data-markdown class="notes">
@@ -1243,8 +1250,8 @@
           obj = {x = 'xx'};
 
       with(obj){
-        assert x === 'xx'; // search on object
-        assert a === 'aa'; // search from 'outer' scope
+        x === 'xx'; // search on object
+        a === 'aa'; // search from 'outer' scope
         c = 'cc'; // yikes! global scope
       }
 
