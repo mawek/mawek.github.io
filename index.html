@@ -990,16 +990,14 @@
     <h2>Object.create()</h2>
 
     <pre><code>
-
-      var obj = Object.create(SomeClass.prototype, {x:5})
-
+      var obj = Object.create(Object.prototype, {x: {value: 5}})
     </code></pre>
 
     <aside data-markdown class="notes">
       <script type="text/template">
         * Object.create()
           * first argument is prototype
-          * second argument is stuff to add
+          * second argument is stuff to add (beware it's property descriptors! not plane properties)
       </script>
     </aside>
   </section>
