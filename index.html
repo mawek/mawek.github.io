@@ -217,7 +217,7 @@
 
 <section>
   <section>
-    <h2>Overview</h2>
+    <h2>JavaScript is</h2>
 
     <ul>
       <li>high-level</li>
@@ -262,7 +262,7 @@
     <aside data-markdown class="notes">
       <script type="text/template">
         * global variables
-          * js has no linked, everything is grouped in global namespace
+          * js has no linker, everything is grouped in global namespace
         * because language is simple, people don't try to understand it but they use it asap
           * then they use it the wrong way and they are angry with the language
         * js is fast, DOM is slow (and js is taking the blame many times unfairly)
@@ -436,7 +436,6 @@
 
     <aside data-markdown class="notes">
       <script type="text/template">
-
         * but there are types. You can gat TypeError when can't convert etc.
           * ({a:5}).helloWorld()
       </script>
@@ -499,7 +498,7 @@
       <script type="text/template">
         * array indexing is performed with 32-bit integers
         * don't write number literal with leading zero, some implementations consider it as octal value
-        * ES5 forbid octal literals explicitly
+        * ES5 forbids octal literals explicitly
         * underflow occurs if value is close to zero = 0 is produced (or -0)
         * division by zero produces NaN
         * x != x // will be true if and only if x is NaN
@@ -528,24 +527,26 @@
   </section>
 
   <section>
-    <h2>Date</h2>
-
-    <p>Let's do it java style - zero based months, 1 based days.</p>
-
-    <img width="300" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
-  </section>
-
-
-  <section>
-    <h2>null</h2>
+    <h2>wrapper objects for primitives</h2>
 
     <pre><code>
-      typeof null === 'object' // WTF?
+      var a = 5;
+      a.toString();
+
+      /* define property on wrapper object
+      * but it will be disposed after this statement
+      */
+      a.someProperty = 'someValue';
+      console.log(a); // undefined
     </code></pre>
 
-    <img width="300" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
-  </section>
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * string/number/boolean
+      </script>
+    </aside>
 
+  </section>
 
   <section>
     <h2>undefined</h2>
@@ -562,6 +563,17 @@
         * its global value that can be set (in ES3)
           * in ES5 undefined is read-only value
           * typeof undefined // returns 'undefined'
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>null or undefined ? </h2>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * null is the right choice most of the time
+        * don't set undefined manually (use delete or so)
       </script>
     </aside>
   </section>
@@ -587,20 +599,24 @@
     </aside>
   </section>
 
+
   <section>
-    <h2>wrapper objects for primitives</h2>
+    <h2>Date</h2>
+
+    <p>Let's do it java style - 0 - based months, 1 - based days.</p>
+
+    <img width="300" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
+  </section>
+
+
+  <section>
+    <h2>null</h2>
 
     <pre><code>
-      var a = 5;
-      a.toString();
-
-      /* define property on wrapper object
-       * but it will be disposed after this statement
-       */
-      a.someProperty = 'someValue';
-      console.log(a); // undefined
+      typeof null === 'object' // WTF?
     </code></pre>
 
+    <img width="300" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJQMfrp6rTBxJjTkgW2NlaVFLC4nOSopTy0SYbZD3r1A-xsitS9w" alt="facepalm">
   </section>
 
   <section>
