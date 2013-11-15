@@ -77,7 +77,6 @@
 
     <aside data-markdown class="notes">
       <script type="text/template">
-
         Ked som este robil v et netere, maintainoval som jeden eshop v ich CMS a obcas tam trebalo urobit aj nejaku
         upravu na UI - vacisnou to teda robili supportaci ale niekedy som sa tomu nevyhol dni ja.
 
@@ -792,21 +791,19 @@
     <h2>Exceptions</h2>
 
     <pre><code>
-      (function() {
-        alert('hello world!');
+      alert('hello world!');
 
-        try {
-          throw new Error('forbidden');
-        } catch (e) {
-          if (e instanceof SomeException) { // yeah this is kind of dumb
-            throw 403;
-          } else if (e.name === 'AnotherError') {
-            throw {description: 'something happened'}
-          }
-        } finally {
-          throw 'FatalError'
+      try {
+        throw new Error('forbidden');
+      } catch (e) {
+        if (e instanceof SomeException) { // yeah this is kind of dumb
+          throw 403;
+        } else if (e.name === 'AnotherError') {
+          throw {description: 'something happened'}
         }
-      }())
+      } finally {
+        throw 'FatalError'
+      }
     </code></pre>
   </section>
 
@@ -1092,7 +1089,7 @@
   </section>
 
   <section>
-    <h2>Function as namespace</h2>
+    <h2>Function as namespace - module pattern</h2>
       <pre><code>
       (function(){
         var obj={},
