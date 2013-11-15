@@ -1179,7 +1179,6 @@
     <h2>Constructor pattern</h2>
 
     <pre><code>
-
       // this is set to new object
       function Rabbit(name, type) {
         this.name = name;
@@ -1188,8 +1187,9 @@
         this.type = function(){
           return type;
         }
-
       }
+
+      Rabbit.prototype = new Animal;
 
       // define functions in prototype
       Rabbit.prototype.jump = function() {
@@ -1200,7 +1200,6 @@
 
       // don't forget new keyword
       var rabbit = new Rabbit('John')
-
     </code></pre>
 
     <aside data-markdown class="notes">
@@ -1208,6 +1207,10 @@
         * only constructor have prototype attribute
         * object prototype doesn't have prototype
         * every object has associated prototype (assigned during construction time)
+        * no need for parenthesis if no params are necessary
+        * Rabbit.prototype expects object
+        * Rabbit is function, not object!
+        * no super support out of the box, no constructor chaining out of the box
       </script>
     </aside>
   </section>
