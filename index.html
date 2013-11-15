@@ -48,12 +48,9 @@
   <h1>Agenda</h1>
 
   <ul>
-    <li>Introduction</li>
     <li>History</li>
     <li>Overview</li>
     <li>Types</li>
-    <li>Objects</li>
-    <li>Function</li>
     <li>Prototypal inheritance</li>
     <li>Execution model</li>
     <li>Developer tools</li>
@@ -62,10 +59,9 @@
   <aside data-markdown class="notes">
     <script type="text/template">
       Rozmysla som ako ponat tuto prezentaciu. nechcel som aby to bol len pouhy vycet vlastnosti alebo referencna prirucka.
-      Ale ono sa to moc neda
+      Ale ono sa to moc neda pri prezentacii tohto typu
       Tak som sa tu snazil zhrnut len tie zakladne rysy jazyka, ktore ho odlisuju od ostatnych jazykov, pripadne nejake veci
-      ktore nie su az take intuitivne a zrejme na prvy pohlad
-      Chcel som aby to bolo prakticke.
+      ktore nie su az take intuitivne a zrejme na prvy pohlad.
     </script>
   </aside>
 
@@ -226,6 +222,12 @@
       <li>interpreted</li>
       <li>suitable for OO and functional style</li>
     </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * XXX
+      </script>
+    </aside>
   </section>
 
   <section>
@@ -243,6 +245,7 @@
     <aside data-markdown class="notes">
       <script type="text/template">
         * js is fast
+        * XXX
       </script>
     </aside>
   </section>
@@ -266,6 +269,10 @@
         * because language is simple, people don't try to understand it but they use it asap
           * then they use it the wrong way and they are angry with the language
         * js is fast, DOM is slow (and js is taking the blame many times unfairly)
+        * standard library - XXX
+        * semicolon - XXX
+        * scope - XXX
+        * with/eval,... - XXX
         * most of the bad parts can be avoided
       </script>
     </aside>
@@ -445,9 +452,43 @@
       <script type="text/template">
         * multiple vars doesn't matter
         * you can assign value to undeclared property but then it goes to the global scope
-        * es5 throws error in such case
+          * es5 throws error in such case
         * if you declare global variable, you are actually defining property of global object
         * it you do it using var = the property is nonconfigurable, and can't be deleted
+      </script>
+    </aside>
+  </section>
+
+  <section>
+    <h2>Hoisting</h2>
+
+    <p>hoisting</p>
+
+    <pre><code>
+      function swap1(a,b){
+        sum = a + b;
+
+        var sum; // this will get hoisted
+
+        return sum;
+      }
+
+      function swap2(a,b){
+        sum = a + b;
+
+        var sum = 0; // assignment doesn't get hoisted
+
+        return sum; // return 0 always
+      }
+    </code></pre></li>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * variables are visible before they are declared - hoisting
+          * but assignments are not hoisted
+          * that's the reason why vars should be on top
+          * but it breaks locality of access
+        * no if/while.. block scope
       </script>
     </aside>
   </section>
@@ -459,7 +500,6 @@
       <li><strong>function scope only</strong></li>
       <li><strong> no block scope:( </strong></li>
       <li>scope chain</li>
-      <li>hoisting</li>
     </ul>
 
     <aside data-markdown class="notes">
@@ -467,10 +507,6 @@
         * function scope only! - in the whole javascript, there is function scope only
         * function scope layering - nested functions
         * scope chain - variable resolution
-        * variables are visible before they are declared - hoisting
-        * but assignments are not hoisted
-        * that's the reason why vars should be on top
-        * but it breaks locality of access
         * if you declare global variable, you are actually defining property of global object
         * it you do it using var = the property is nonconfigurable, and can't be deleted
       </script>
@@ -975,7 +1011,7 @@
         * closures
           * lexical scoping - so the functions must include also reference to the current scope chain (when defining)
           * this combination of function object and scope(variable bindings) in which function variables are resolved is called a closure
-        * toString
+        * toStrin - i.e. require.js uses this for dependency searching (it's searching for require('something') so it knows which dependencies to load asynchronously)
       </script>
     </aside>
   </section>
