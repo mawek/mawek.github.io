@@ -776,6 +776,24 @@
     </code></pre>
   </section>
 
+  <section>
+    <h2>Global object</h2>
+
+    <ul>
+      <li>defined by environment</li>
+      <li>defines common variables, functions, constructors</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * variables: undefined, Infinity, NaN, Math, JSON
+        * functions: isNan(), parseInt(), eval()
+        * constructors: Date), RegExp(), String(), Object(), Array()
+        * initial properties of the global object are not reserved words but they should be treated like they are
+      </script>
+    </aside>
+  </section>
+
 </section>
 
 <section>
@@ -1120,6 +1138,9 @@
 
     <aside data-markdown class="notes">
       <script type="text/template">
+        * js is class free
+        * objects inherit of objects
+        * delegation (differential inheritance)
         * object created by new Date() inherits data from Date prototype and Object prototype
       </script>
     </aside>
@@ -1394,6 +1415,7 @@
           * if you use src attribute, content between tags is ignored
           * caching - using CDN
             * same origin policy doesn't apply here - js code can interact with code no matter where it was loaded from
+        * same origin policy
       </script>
     </aside>
   </section>
