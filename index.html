@@ -528,37 +528,6 @@
       </script>
     </aside>
   </section>
-
-  <section>
-    <h2>Variables</h2>
-
-
-    TODO example should work
-    <pre><code>
-      var someFunction = function(){
-      var a = 5;
-      {
-      var b = 10; // no block scope - b is hoisted to the top
-      }
-
-      alert(helloWorld()); // this works fine
-
-      // this would fail
-      // alert(helloWorldVariable());
-
-      // helloWorld function get hoisted to the top, so it can be called from everywhere
-      // helloWorldVariable get hoisted but it assignment don't
-      var helloWorldVariable = function helloWorld(){
-      return 'hello world';
-      }
-
-      // closure
-      return function(){
-        return a++;
-      }
-      }
-    </code></pre>
-  </section>
 </section>
 
 <section>
@@ -915,6 +884,9 @@
         * delete property
           * like setting to undefined, but the property removes from enumeration
         * for in loop
+          * for (var p in p){}
+            * is you set some property as undefined, it WILL show up
+            * if you delete some proeprty it won't show up
           * iterate over object (enumerable) properties, and its prototype properties
           * user can filter what he caser about
       </script>
@@ -1052,6 +1024,33 @@
           * only top level, no in if/loop
       </script>
     </aside>
+  </section>
+
+  <section>
+    <h2>function definition expression </h2>
+
+
+    TODO example should work
+    <pre><code>
+      var someFunction = function(){
+
+        alert(helloWorld()); // this works fine
+
+        // this would fail
+        // alert(helloWorldVariable());
+
+        // helloWorld function get hoisted to the top, so it can be called from everywhere
+        // helloWorldVariable get hoisted but it assignment don't
+        var helloWorldVariable = function helloWorld(){
+          return 'hello world';
+        }
+
+        // closure
+        return function(){
+          return a++;
+        }
+      }
+    </code></pre>
   </section>
 
   <section>
@@ -1475,6 +1474,13 @@
         * in console inspect($('#nejake_id')) - find element
         * $0 - selected element
         * $ - like jquery, if there is jquery, it replaces chrome $
+          * $('li') - najde setky licka na stranke
+          * $('li').text('asdf'), zmeni vsetky licka na strnake
+          * filtering versus traversing
+            * $('#some_id ul li') - selection
+            * $('#some_id ul').find('li') - selection with traversal (find) - it's faster this way
+          * traversal over selection - performance boost is debatable (only first, last stuff)
+          * resp mal by som pouzivat klasicke css selectory a nie jquery pseudo selectory (:radio,:eq, :checkbox)
 
       </script>
     </aside>
