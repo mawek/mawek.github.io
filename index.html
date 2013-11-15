@@ -462,8 +462,6 @@
   <section>
     <h2>Hoisting</h2>
 
-    <p>hoisting</p>
-
     <pre><code>
       function swap1(a,b){
         sum = a + b;
@@ -494,7 +492,7 @@
   </section>
 
   <section>
-    <h2>Variables and scope</h2>
+    <h2>scope</h2>
 
     <ul>
       <li><strong>function scope only</strong></li>
@@ -509,6 +507,8 @@
         * scope chain - variable resolution
         * if you declare global variable, you are actually defining property of global object
         * it you do it using var = the property is nonconfigurable, and can't be deleted
+        * global scope - if you don't use var
+        * object - it's not real scope per se
       </script>
     </aside>
   </section>
@@ -1225,10 +1225,11 @@
     <aside data-markdown class="notes">
       <script type="text/template">
         * === does not perform conversion, so it also compares types
-        * check type
-        * check type, check null/undefined (null/undefined===null/undefined), check if they are primitives (besides NaN), check for reference eq
+          * check type
+          * check type, check null/undefined (null/undefined===null/undefined), check if they are primitives (besides NaN), check for reference eq
         * == conversion (toString, valueOf), comparing primitives
-        * like === but instead of reference comparing, it convert values and compare primitives
+          * like === but instead of reference comparing, it convert values and compare primitives
+        * none of these performs deep equals ( no nested properties equation,..)
       </script>
     </aside>
   </section>
