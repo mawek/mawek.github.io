@@ -439,6 +439,23 @@
     <h2>Variables & scope</h2>
   </section>
 
+
+  <section>
+    <h2>Identifiers and keys</h2>
+
+    <ul>
+      <li>[a-zA-Z_$][a-zA-Z_$0-9]</li>
+      <li>no dash etc</li>
+      <li>object properties</li>
+    </ul>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * if using square bracket notation - everything is permitted
+      </script>
+    </aside>
+  </section>
+
   <section>
     <h2>Variables</h2>
 
@@ -542,17 +559,6 @@
       }
       }
     </code></pre>
-  </section>
-
-  <section>
-    <h2>Identifiers and keys</h2>
-
-    <ul>
-      <li>[a-zA-Z_$][a-zA-Z_$0-9]</li>
-      <li>no dash etc</li>
-      <li>the same goes for object properties names</li>
-      <li>if using square bracket notation - everything is permitted</li>
-    </ul>
   </section>
 </section>
 
@@ -698,6 +704,20 @@
       <li>unitialized value</li>
       <li>it's global value, that can be set (in ES3)</li>
     </ul>
+
+    <pre><code>
+      var obj = {x: 5, y: 3};
+      obj.x === 5;
+      obj.y === 3;
+
+      delete obj.x; // return true
+      obj.x === undefined; // x doesn't exist on obj anymore
+
+      obj.y = undefined;
+      obj.y === undefined; // y property is still there!
+
+    </code></pre></li>
+
     <aside data-markdown class="notes">
       <script type="text/template">
         * default function return value
