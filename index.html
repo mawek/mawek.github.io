@@ -1015,10 +1015,8 @@
         * names are useful for stacktraces
         * variable declaration get hoisted, but their assignment don't
         * also function declaration get hoisted (the whole with body not just the name)
-        * closures
-          * lexical scoping - so the functions must include also reference to the current scope chain (when defining)
-          * this combination of function object and scope(variable bindings) in which function variables are resolved is called a closure
-        * toStrin - i.e. require.js uses this for dependency searching (it's searching for require('something') so it knows which dependencies to load asynchronously)
+        * closures - XXX
+        * toString- i.e. require.js uses this for dependency searching (it's searching for require('something') so it knows which dependencies to load asynchronously)
       </script>
     </aside>
   </section>
@@ -1128,6 +1126,37 @@
       </script>
     </aside>
   </section>
+
+  <section>
+    <h2>Closure</h2>
+
+      <pre><code>
+      var fn = function(){
+        var a = 1;
+        return function(){
+          return a++;
+        }
+      }
+
+      clos = fn();
+      clos(); // 1
+      clos(); // 2
+      clos(); // 3 ...
+    </code></pre>
+
+    <aside data-markdown class="notes">
+      <script type="text/template">
+        * lexical scoping - so the functions must include also reference to the current scope chain (when defining)
+        * this combination of function object and scope(variable bindings) in which function variables are resolved is called a closure
+        * technically all functions are closures
+          * it gets interested for nested functions that are invoked later
+        * scope chain is list of objects - not stack of bindings - thats why nested function also includes current scope when defining - its not stack that gets revinded if outter function returns
+
+      </script>
+    </aside>
+  </section>
+
+
 </section>
 
 <section>
